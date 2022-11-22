@@ -28,9 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("time").innerHTML = 1 + ":" + 00;
     startTimer();
   });
-  // quizArray QUESTIONS & ANSWERS
-  // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
-  // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
+
   const quizArray = [
     {
       q: "Which is the third planet from the sun?",
@@ -109,21 +107,21 @@ window.addEventListener("DOMContentLoaded", () => {
   btnSubmit.addEventListener("click", calculateScore);
 
   function startTimer() {
-    let nowTime = document.getElementById("time").innerHTML;
-    let timeArray = nowTime.split(/[:]+/);
-    console.log(timeArray);
-    let min = timeArray[0];
-    let sec = timeArray[1] - 1;
-    if (sec < 0) {
-      sec = 59;
-      min -= 1;
-    } else if (sec < 10) {
-      sec = "0" + sec;
+    let cuurentTime = document.getElementById("time").innerHTML;
+    
+    let timeArray = cuurentTime.split(/[:]+/);
+    let minute = timeArray[0];
+    let second = timeArray[1] - 1;
+    if (second < 0) {
+      second = 59;
+      minute -= 1;
+    } else if (second < 10) {
+      second = "0" + second;
     }
 
-    document.getElementById("time").innerHTML = min + ":" + sec;
+    document.getElementById("time").innerHTML = minute + ":" + second;
 
-    if (min === "0" && sec === "00") {
+    if (minute === "0" && second === "00") {
       document.getElementById("time").style.color = "red";
       document.getElementById("time").innerHTML += ` Timer Expired!!`;
       calculateScore();
